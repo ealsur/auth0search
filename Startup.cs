@@ -33,7 +33,6 @@ namespace auth0search
         {
             services.AddAuthentication(
                 options => options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme);
-            services.AddSingleton<IDocumentDbService>(x=>new DocumentDbService(Configuration.GetSection("DocumentDb")));
             services.Configure<Auth0Settings>(Configuration.GetSection("Auth0"));
            
 
