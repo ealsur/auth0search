@@ -1,4 +1,4 @@
-@model LockContext
+@model auth0search.Models.LockContext
 
 <div id="root" style="width: 320px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;">
 	embeded area
@@ -16,7 +16,43 @@
         state: '@Model.State' ,
         nonce: '@Model.Nonce'
       }
+    },
+    additionalSignUpFields: [{
+      name: "address",                              
+      placeholder: "enter your address",            
+      icon: "https://example.com/address_icon.png", 
+      prefill: "street 123",                        
+      validator: function(value) {                  
+        // only accept addresses with more than 10 chars
+        return value.length > 10;
+      }
+    },
+    {
+      type: "select",                                       
+      name: "location",                                     
+      placeholder: "choose your location",                  
+       options: [                                            
+        {value: "us", label: "United States"},
+        {value: "fr", label: "France"},
+        {value: "ar", label: "Argentina"}
+      ],
+      prefill: "us",  
+      icon: "https://example.com/assests/location_icon.png" 
+    },
+    {
+      type: "select",                                       
+      name: "gender",                                     
+      placeholder: "choose your gender",                  
+       options: [                                            
+        {value: "male", label: "Male"},
+        {value: "female", label: "Female"},
+        {value: "other", label: "Other"},
+        {value: "not-saying", label: "Prefer not to say"}
+      ],
+      prefill: "us",  
+      icon: "https://example.com/assests/location_icon.png" 
     }
+    ] 
   });
 
   lock.show();

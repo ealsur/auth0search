@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auth0 - Azure DocumentDB Sample</title>
+    <title>Auth0 - Azure Search Sample</title>
     @RenderSection("scripts", required: false)
     <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <link href="/lib/angular-bootstrap-toggle.min.css" rel="stylesheet">
@@ -19,13 +19,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Auth0 - Azure DocumentDB Sample</a>
+                <a href="/" class="navbar-brand">Auth0 - Azure Search Sample</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
                     <li><a href="/profile">Profile</a></li>
-                    <li><a href="https://azure.microsoft.com/services/documentdb/" target="_blank">What is DocumentDB?</a></li>
+                    <li><a href="https://azure.microsoft.com/services/search/" target="_blank">What is Azure Search?</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated)
