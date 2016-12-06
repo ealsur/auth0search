@@ -20,7 +20,7 @@
     additionalSignUpFields: [{
       name: "address",                              
       placeholder: "enter your address",            
-      icon: "https://example.com/address_icon.png", 
+      icon: "/images/location.png", 
       prefill: "street 123",                        
       validator: function(value) {                  
         // only accept addresses with more than 10 chars
@@ -29,7 +29,7 @@
     },
     {
       type: "select",                                       
-      name: "location",                                     
+      name: "country",                                     
       placeholder: "choose your location",                  
        options: [                                            
         {value: "us", label: "United States"},
@@ -37,7 +37,7 @@
         {value: "ar", label: "Argentina"}
       ],
       prefill: "us",  
-      icon: "https://example.com/assests/location_icon.png" 
+      icon: "/images/country.png" 
     },
     {
       type: "select",                                       
@@ -50,13 +50,13 @@
         {value: "not-saying", label: "Prefer not to say"}
       ],
       prefill: "us",  
-      icon: "https://example.com/assests/location_icon.png" 
+      icon: "/images/gender.png" 
     },
     {
       type: "textarea",                                       
       name: "description",                                     
       placeholder: "tell us about yourself",                  
-      icon: "https://example.com/assests/location_icon.png" 
+      icon: "/images/description.png" 
     }
     ] 
   });
