@@ -16,33 +16,32 @@
   </div>
 
 <div class="container" >
-    <div class="col-sm-3" ng-show="results.Count">
-        <div class="card card-block" ng-show="filters">
-        <h4  class="card-title">Filtros aplicados</h4>
+    <div class="col-sm-3" ng-show="users.results.Count">
+        <div class="card card-block" ng-show="users.filters">
+        <h4  class="card-title">Applied filters</h4>
         <ul  class="list-unstyled">
-            <li ng-repeat="(key, value) in filters"><a href="#" ng-click="filter($event, key, value)"><span class="fa fa-minus-circle"></span></a> {{getDescriptionByKey(key)}} {{value}}</li>
+            <li ng-repeat="(key, value) in users.filters"><a href="#" ng-click="users.filter($event, key, value)"><span class="fa fa-minus-circle"></span></a> {{key}} {{value}}</li>
         </ul>                        
         </div>
-        <span uib-tooltip="Facets y Filters" tooltip-is-open="showTooltips" tooltip-placement="bottom" tooltip-enable="showTooltips"></span>
-        <div class="card card-block"  ng-repeat="(key, value) in results.Facets">
-        <h4  class="card-title">{{getDescriptionByKey(key)}}</h4>
+        <div class="card card-block"  ng-repeat="(key, value) in users.results.Facets">
+        <h4  class="card-title">{{key}}</h4>
         <ul  class="list-unstyled">
-            <li ng-repeat="filtro in value" ng-if="filtro.value"><a href="#" ng-click="filter($event, key, filtro.value)"><span class="fa fa-filter"></span> {{filtro.value}}</a> <span class="label label-default label-pill pull-right">{{filtro.count}}</span></li>
+            <li ng-repeat="filtro in value" ng-if="filtro.value"><a href="#" ng-click="users.filter($event, key, filtro.value)"><span class="fa fa-filter"></span> {{filtro.value}}</a> <span class="label label-default label-pill pull-right">{{filtro.count}}</span></li>
         </ul>                        
         </div>
     </div>
     <div class="col-sm-9">
-        <div class="col-xs-12 text-xs-center" ng-show="searching">
-                <h4>Buscando...</h4><br>
+        <div class="col-xs-12 text-xs-center" ng-show="users.searching">
+                <h4>Searching...</h4><br>
                 <img src="images/loader.gif" class="center-block">
         </div>
-        <div  class="col-xs-12 text-xs-center" ng-show="!searching && results.Count == 0">
-            No encontramos resultados
+        <div  class="col-xs-12 text-xs-center" ng-show="!users.searching && users.results.Count == 0">
+            Nothing was found
         </div>
         
-        <div  class="col-xs-12" ng-show="!searching && results.Count > 0">
-        <h4 uib-tooltip="Resultados de busqueda" tooltip-is-open="showTooltips" tooltip-placement="bottom" tooltip-enable="showTooltips">Hay <strong>{{results.Count}}</strong> resultados de búsqueda</h4>           
-        <div class="col-xs-12" ng-repeat="item in results.Results">
+        <div  class="col-xs-12" ng-show="!users.searching && users.results.Count > 0">
+        <h4 >There are <strong>{{users.results.Count}}</strong> results</h4>           
+        <div class="col-xs-12" ng-repeat="item in users.results.Results">
                 <div class="media result-item">
                     <div class="media-left media-middle">
                         <img class="media-object" ng-src="{{item.Document.ImageUrl}}">
@@ -58,10 +57,10 @@
                     </div>             
                 
            </div>
-        <nav class="clearfix" ng-show="results.Count > 0">
+        <nav class="clearfix" ng-show="users.results.Count > 0">
             <ul class="pager">
-                <li class="pager-prev" ng-show="page > 1"><a href="#" ng-click="prev($event)"><span aria-hidden="true">&larr;</span> Anteriores</a></li>
-                <li class="pager-next"><a href="#" ng-click="next($event)">Siguientes <span aria-hidden="true">&rarr;</span></a></li>
+                <li class="pager-prev" ng-show="page > 1"><a href="#" ng-click="users.prev($event)"><span aria-hidden="true">&larr;</span> Prev</a></li>
+                <li class="pager-next"><a href="#" ng-click="users.next($event)">Next <span aria-hidden="true">&rarr;</span></a></li>
             </ul>
         </nav>
         </div>

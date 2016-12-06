@@ -59,6 +59,20 @@
                         ctrl.searching=false;
                     });
                 };
-   
+                 ctrl.next = function($event){
+
+                    ctrl.page++;
+
+                    ctrl.search($event);
+
+                };
+
+                ctrl.prev = function($event){
+
+                    ctrl.page--;
+
+                    ctrl.search($event);
+
+                };
             }]);
 })();
