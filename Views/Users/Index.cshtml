@@ -1,0 +1,76 @@
+<div ng-controller="UsersController as users">
+<div class="container">
+    <div class="page-title"><h1>Search sample</h1></div>
+    <div class="col-xs-12 col-sm-6  offset-sm-3">
+        <form>
+        <div class="input-group">
+            
+            <span class="input-group-addon"><span class="fa fa-search"></span></span>
+            <input type="text" class="form-control" placeholder="Buscar..." ng-model="users.searchText" ng-disabled="users.searching">
+            <div class="input-group-btn">
+               <button class="btn btn-primary" type="submit" ng-click="users.search($event)" ng-disabled="searching">Buscar</button>
+            </div>
+        </div>
+        </form>         
+    </div>
+  </div>
+
+<div class="container" >
+    <div class="col-sm-3" ng-show="results.Count">
+        <div class="card card-block" ng-show="filters">
+        <h4  class="card-title">Filtros aplicados</h4>
+        <ul  class="list-unstyled">
+            <li ng-repeat="(key, value) in filters"><a href="#" ng-click="filter($event, key, value)"><span class="fa fa-minus-circle"></span></a> {{getDescriptionByKey(key)}} {{value}}</li>
+        </ul>                        
+        </div>
+        <span uib-tooltip="Facets y Filters" tooltip-is-open="showTooltips" tooltip-placement="bottom" tooltip-enable="showTooltips"></span>
+        <div class="card card-block"  ng-repeat="(key, value) in results.Facets">
+        <h4  class="card-title">{{getDescriptionByKey(key)}}</h4>
+        <ul  class="list-unstyled">
+            <li ng-repeat="filtro in value" ng-if="filtro.value"><a href="#" ng-click="filter($event, key, filtro.value)"><span class="fa fa-filter"></span> {{filtro.value}}</a> <span class="label label-default label-pill pull-right">{{filtro.count}}</span></li>
+        </ul>                        
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="col-xs-12 text-xs-center" ng-show="searching">
+                <h4>Buscando...</h4><br>
+                <img src="images/loader.gif" class="center-block">
+        </div>
+        <div  class="col-xs-12 text-xs-center" ng-show="!searching && results.Count == 0">
+            No encontramos resultados
+        </div>
+        
+        <div  class="col-xs-12" ng-show="!searching && results.Count > 0">
+        <h4 uib-tooltip="Resultados de busqueda" tooltip-is-open="showTooltips" tooltip-placement="bottom" tooltip-enable="showTooltips">Hay <strong>{{results.Count}}</strong> resultados de búsqueda</h4>           
+        <div class="col-xs-12" ng-repeat="item in results.Results">
+                <div class="media result-item">
+                    <div class="media-left media-middle">
+                        <img class="media-object" ng-src="{{item.Document.ImageUrl}}">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="{{item.Document.Link}}" target="_blank">{{item.Document.Title}}</a></h4>
+                         <small class="text-muted">{{item.Document.Description}}</small>
+                         <p><u>Publicado</u>: {{item.Document.Date | date : 'dd/MM/yyyy'}}</p>
+                        <p><u>Categoría</u>: {{item.Document.Category}} <u>Visitas</u>: {{item.Document.Views}}</p>
+                        <p><u>Auto</u>: <a href="#" class="label label-default label-pill" ng-repeat="genre in item.Document.TagsModelos">{{genre}}</a></p>
+                        <h4 class="media-heading"><strong>Score</strong> {{item.Score}}</h4>
+                    </div>
+                    </div>             
+                
+           </div>
+        <nav class="clearfix" ng-show="results.Count > 0">
+            <ul class="pager">
+                <li class="pager-prev" ng-show="page > 1"><a href="#" ng-click="prev($event)"><span aria-hidden="true">&larr;</span> Anteriores</a></li>
+                <li class="pager-next"><a href="#" ng-click="next($event)">Siguientes <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+        </nav>
+        </div>
+    </div>
+</div>
+</div>
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="/lib/users.js"></script>
+}
+   
