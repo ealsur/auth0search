@@ -2,6 +2,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using auth0search.Models;
+using auth0search.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -62,7 +63,9 @@ namespace auth0search
                 options.ClaimsIssuer = "Auth0";
             });
 
-
+            //Injecting Azure Search service
+            services.AddSingleton<ISearchService>(new SearchService(Configuration["search:accountName"],Configuration["search:queryKey"] ));
+            
             services.AddMvc();
             services.AddOptions();
         }
