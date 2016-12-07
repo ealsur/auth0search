@@ -15,7 +15,7 @@
     "Microsoft.AspNetCore.Mvc": "1.1.0",
     "Microsoft.AspNetCore.Authentication.OpenIdConnect": "1.1.0",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
-    "Microsoft.Azure.Search": "3.0.0-rc",
+    "Microsoft.Azure.Search": "3.0.1",
     "Microsoft.AspNetCore.Mvc.Razor.ViewCompilation.Design": "1.1.0-preview4-final"
   },
 
