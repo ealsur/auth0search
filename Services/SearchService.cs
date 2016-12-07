@@ -67,7 +67,10 @@ namespace auth0search.Services
 				} 
 				sp.IncludeTotalResultCount = true;
 				if(payload.IncludeFacets){
-					sp.Facets = payload.Facets;
+					var appliedFilters = (payload.Filters??new Dictionary<string,string>()).Select(x=>x.Key);
+					//Asking for facets for applied filters is not really needed
+					//The amount is actually the result count
+					sp.Facets = payload.Facets.Except(appliedFilters).ToList();
 				}
 				return indexClient.Documents.Search(payload.Text, sp);
 			}

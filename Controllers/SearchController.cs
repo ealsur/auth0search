@@ -26,6 +26,5 @@ namespace auth0search.Controllers
             var response = _searchService.Suggest("users", "emails", term, fuzzy); 
             return Json(response);  
         }
-
     }
 }

@@ -1,0 +1,26 @@
+<div ng-controller="SuggestionsController as suggestions">
+<div class="container">
+    <div class="page-title"><h1>Suggestions sample</h1></div>
+    <div class="col-xs-12 col-sm-6  col-sm-offset-3">
+        <form>
+        <div class="input-group typeahead">
+                
+            <span class="input-group-addon"><span class="fa fa-search"></span></span>
+            <input type="text" ng-model="suggestions.asyncSelected" placeholder="Start to write..." typeahead-wait-ms="1000" typeahead-min-length="3" uib-typeahead="text for text in suggestions.getSuggestions($viewValue)" typeahead-loading="suggestions.loading" typeahead-no-results="suggestions.noResults" class="form-control" autocomplete="off">
+            <span class="input-group-addon" ng-show="suggestions.loading"><span  class="fa fa-spin fa-refresh"></span></span>
+            
+        </div>
+        <div ng-show="suggestions.noResults" class="alert alert-warning">
+        <i class="fa fa-remove"></i> No results
+        </div>
+        </form>
+    </div>
+  </div>
+
+</div>
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="/lib/suggestions.js"></script>
+}
+   

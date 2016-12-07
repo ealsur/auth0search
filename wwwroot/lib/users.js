@@ -47,14 +47,15 @@
                     }
                     $http({
                         method: 'POST',
-                        url: '/search',
+                        url: '/search/search',
                         data: {
                             Text: ctrl.searchText,
                             Filters:ctrl.filters,
                             IncludeFacets:true,
-                            Page:ctrl.page
+                            Page:ctrl.page,
+                            Facets:["country","gender"]
                         }
-                    }).then(function success(response) {
+                    }).then(function(response) {
                         ctrl.results= response.data;
                         ctrl.searching=false;
                     });
