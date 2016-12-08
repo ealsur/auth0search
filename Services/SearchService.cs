@@ -28,8 +28,7 @@ namespace auth0search.Services
 		/// <returns></returns>
 		private ISearchIndexClient GetClient(string indexName)
 		{
-			ISearchIndexClient indexClient = indexClients.GetOrAdd(indexName, client.Indexes.GetClient(indexName));
-			return indexClient;
+			return indexClients.GetOrAdd(indexName, client.Indexes.GetClient(indexName));
 		}
 
 		/// <summary>
