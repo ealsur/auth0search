@@ -3,6 +3,7 @@ using Microsoft.Azure.Search.Models;
 using System.Collections.Generic;
 using auth0search.Models;
 using System.Linq;
+using System.Collections.Concurrent;
 
 namespace auth0search.Services
 {
@@ -13,11 +14,11 @@ namespace auth0search.Services
 	{
 		private SearchServiceClient client;
 		//Maintaining a Dictionary of Index Clients is better performant
-		private Dictionary<string, ISearchIndexClient> indexClients;
+		private ConcurrentDictionary<string, ISearchIndexClient> indexClients;
 		public SearchService(string accountName,string queryKey)
 		{
 			client = new SearchServiceClient(accountName, new SearchCredentials(queryKey));
-			indexClients = new Dictionary<string, ISearchIndexClient>();
+			indexClients = new ConcurrentDictionary<string, ISearchIndexClient>();
 		}
 
 		/// <summary>
@@ -27,12 +28,7 @@ namespace auth0search.Services
 		/// <returns></returns>
 		private ISearchIndexClient GetClient(string indexName)
 		{
-			ISearchIndexClient indexClient;
-			if(!indexClients.TryGetValue(indexName, out indexClient))
-			{
-				indexClient = client.Indexes.GetClient(indexName);
-				indexClients.Add(indexName, indexClient);
-			}
+			ISearchIndexClient indexClient = indexClients.GetOrAdd(indexName, client.Indexes.GetClient(indexName));
 			return indexClient;
 		}
 
