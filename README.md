@@ -1,4 +1,4 @@
-# Using Azure Search with Auth0
+# Using Azure Search with Auth0 and ASP.NET Core
 
 This repository acts as sample in a scenario where you want to use Azure Search and integrate Auth0's custom database to create a rich search experience.
 
